@@ -49,6 +49,8 @@ const LoginForm = () => {
         backgroundImage: `url(${BannerBG})`,
       }}
     >
+      {/* Dark Blur Overlay */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-0"></div>
       <form
         onSubmit={handleSubmit}
         className="backdrop-blur-md bg-black/40 p-10 rounded-2xl shadow-lg w-full max-w-md flex flex-col gap-6 border border-white/20 mx-4"
