@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/api";
 import { useAuth } from "../../context/AuthContext";
+import BannerBG from "../../assets/BannerBG.jpg";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -25,15 +26,13 @@ const LoginForm = () => {
 
       console.log("Login Success:", response.data);
 
-      // Store user in localStorage & Context
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
-      loginUser(response.data.user); // <-- Update global context immediately
+      loginUser(response.data.user);
 
       const userRole = response.data.user.role;
 
-      // Navigate based on role
       if (userRole === "admin") navigate("/admin-dashboard");
       else if (userRole === "owner") navigate("/storeowner-dashboard");
       else navigate("/user-dashboard");
@@ -47,7 +46,7 @@ const LoginForm = () => {
     <div
       className="min-h-screen w-full flex items-center justify-center bg-cover bg-center"
       style={{
-        backgroundImage: "url('/src/assets/BannerBG.jpg')",
+        backgroundImage: `url(${BannerBG})`,
       }}
     >
       <form
