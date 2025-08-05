@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../api/api";
 import { useAuth } from "../../context/AuthContext";
 import BannerBG from "../../assets/BannerBG.jpg";
+import ReusableButton from "../../components/ReusableButton";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -44,16 +45,15 @@ const LoginForm = () => {
 
   return (
     <div
-      className="min-h-screen w-full flex items-center justify-center bg-cover bg-center"
+      className="min-h-screen w-full flex items-center justify-center bg-cover bg-center relative"
       style={{
         backgroundImage: `url(${BannerBG})`,
       }}
     >
-      {/* Dark Blur Overlay */}
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-0"></div>
       <form
         onSubmit={handleSubmit}
-        className="backdrop-blur-md bg-black/40 p-10 rounded-2xl shadow-lg w-full max-w-md flex flex-col gap-6 border border-white/20 mx-4"
+        className="backdrop-blur-md bg-black/40 p-10 rounded-2xl shadow-lg w-full max-w-md flex flex-col gap-6 border border-white/20 mx-4 z-10"
       >
         <h2 className="text-3xl font-extrabold text-center text-white">
           Welcome Back!
@@ -119,12 +119,9 @@ const LoginForm = () => {
           </select>
         </div>
 
-        <button
-          type="submit"
-          className="bg-white/20 text-white py-2 rounded-md hover:bg-white/30 transition font-semibold text-lg backdrop-blur-sm"
-        >
-          Login
-        </button>
+        <div className="flex justify-center">
+          <ReusableButton type="submit">Login</ReusableButton>
+        </div>
 
         {role === "user" && (
           <p className="text-sm text-center text-white">

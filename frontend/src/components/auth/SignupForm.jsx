@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/api";
 import signUpBannerBG from "../../assets/signUpBanner.jpg";
+import ReusableButton from "../../components/ReusableButton";
 
 const SignupForm = () => {
   const [name, setName] = useState("");
@@ -118,12 +119,9 @@ const SignupForm = () => {
           />
         </div>
 
-        <button
-          type="submit"
-          className="bg-white/20 text-white py-2 rounded-md hover:bg-white/30 transition font-semibold text-lg backdrop-blur-sm"
-        >
-          Sign Up
-        </button>
+        <div className="flex justify-center">
+          <ReusableButton type="submit">Sign Up</ReusableButton>
+        </div>
 
         <p className="text-sm text-center text-white">
           Already have an account?{" "}
