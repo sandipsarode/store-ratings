@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/api";
+import BannerBG from "../../assets/BannerBG.jpg"; // Login Banner
 
 const AddStore = () => {
   const [name, setName] = useState("");
@@ -46,64 +47,88 @@ const AddStore = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div
+      className="relative min-h-screen w-full flex items-center justify-center bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${BannerBG})`,
+      }}
+    >
+      {/* Dark Blur Overlay */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-0"></div>
+
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow-md w-96 flex flex-col gap-4"
+        className="relative z-10 backdrop-blur-md bg-black/40 p-10 rounded-2xl shadow-lg w-full max-w-md flex flex-col gap-6 border border-white/20 mx-4"
       >
-        <h2 className="text-2xl font-bold text-center text-indigo-600">
+        <h2 className="text-3xl font-extrabold text-center text-white">
           Add New Store
         </h2>
 
-        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+        {error && (
+          <p className="text-red-400 text-sm text-center bg-red-900/40 py-2 rounded-md">
+            {error}
+          </p>
+        )}
 
         <div>
-          <label className="block text-sm mb-1">Store Name</label>
+          <label className="block text-sm font-semibold mb-1 text-white">
+            Store Name
+          </label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-indigo-500"
+            className="w-full px-4 py-2 border border-white/30 bg-white/10 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-white/40 placeholder-white/60"
             placeholder="Enter store name"
           />
         </div>
 
         <div>
-          <label className="block text-sm mb-1">Store Email</label>
+          <label className="block text-sm font-semibold mb-1 text-white">
+            Store Email
+          </label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-indigo-500"
+            className="w-full px-4 py-2 border border-white/30 bg-white/10 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-white/40 placeholder-white/60"
             placeholder="Enter store email"
           />
         </div>
 
         <div>
-          <label className="block text-sm mb-1">Store Address</label>
+          <label className="block text-sm font-semibold mb-1 text-white">
+            Store Address
+          </label>
           <input
             type="text"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-indigo-500"
+            className="w-full px-4 py-2 border border-white/30 bg-white/10 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-white/40 placeholder-white/60"
             placeholder="Enter store address"
           />
         </div>
 
         <div>
-          <label className="block text-sm mb-1">Select Owner ID</label>
+          <label className="block text-sm font-semibold mb-1 text-white">
+            Select Store Owner
+          </label>
           <select
-            value={owner_id}
+            value={owner_id || ""}
             onChange={(e) => setOwnerId(parseInt(e.target.value))}
             required
-            className="w-full px-4 py-2 border rounded-md focus:outline-indigo-500"
+            className="w-full px-4 py-2 border border-white/30 bg-black/40 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-white/40 appearance-none"
           >
-            <option value="">Select Owner ID</option>
+            <option value="">Select Owner</option>
             {owners.map((owner) => (
-              <option key={owner.id} value={owner.id}>
+              <option
+                key={owner.id}
+                value={owner.id}
+                className="bg-black text-white"
+              >
                 {owner.id} - {owner.name}
               </option>
             ))}
@@ -112,9 +137,17 @@ const AddStore = () => {
 
         <button
           type="submit"
-          className="bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition"
+          className="bg-white/20 text-white py-2 rounded-md hover:bg-white/30 transition font-semibold text-lg backdrop-blur-sm"
         >
           Add Store
+        </button>
+
+        <button
+          type="button"
+          onClick={() => navigate("/admin-dashboard")}
+          className="text-white underline text-sm text-center hover:text-gray-300"
+        >
+          Go Back to Dashboard
         </button>
       </form>
     </div>
