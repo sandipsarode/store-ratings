@@ -132,7 +132,7 @@ const StoreOwnerDashboard = () => {
         {/* Ratings List Section */}
         <div className="bg-white/10 backdrop-blur-sm rounded-lg shadow-md p-6 border border-white/20">
           <h2 className="text-xl font-semibold text-white mb-4">
-            Users who submitted ratings
+            Users who Submitted Ratings
           </h2>
           {ratings.length === 0 ? (
             <p className="text-white/70">No ratings submitted yet.</p>
